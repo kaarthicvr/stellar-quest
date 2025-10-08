@@ -28,7 +28,7 @@ export default function VoyagerDetails() {
 
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxLW_iUS6Qv5M3zWFn3jaS5eaWTRi2KKLHqOvAn8ZvV5PQvuSwURacuIbYfPHSqTm0FYA/exec",
+        "https://script.google.com/macros/s/AKfycbwTvJmPtIoCab9AJPuuaQmIdGh5RF-eF3Eq9P_hy_ilg-tmhl1NpLgZA-IsDV9ew1h8bA/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -36,6 +36,7 @@ export default function VoyagerDetails() {
       );
       const result = await response.json();
       if (result.status === "success") {
+        localStorage.setItem("teamName", teamName);
         alert("Voyager details submitted successfully!");
         navigate("/decrypt"); // ✅ redirect to decrypt page
       } else {
