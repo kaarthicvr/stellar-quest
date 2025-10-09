@@ -39,14 +39,6 @@ export default function NextChallenge() {
     }
   };
 
-  const resetChallenge = () => {
-    setCurrentQuestion(0);
-    setAnswer("");
-    setResponses([]);
-    setShowComplete(false);
-    setTeamName(savedTeamName);
-  };
-
   const handleNext = async (skip = false) => {
     const newResponses = [...responses, skip ? "Skipped" : answer];
     setResponses(newResponses);
