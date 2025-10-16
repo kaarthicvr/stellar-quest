@@ -22,6 +22,7 @@ export default function NextChallenge() {
     { question: "Decrypt (shift 4): 'Xli tperx mw hsjew'" },
   ];
 
+  // 🌟 Generate stars + load existing team name
   useEffect(() => {
     const generatedStars = Array.from({ length: 100 }).map(() => ({
       top: `${Math.random() * 100}%`,
@@ -30,15 +31,26 @@ export default function NextChallenge() {
       opacity: Math.random(),
     }));
     setStars(generatedStars);
+
+    // ✅ Retrieve team name from localStorage if exists
+    const storedTeam = localStorage.getItem("teamName");
+    if (storedTeam) {
+      setTeamName(storedTeam);
+      setSavedTeamName(storedTeam);
+      setShowTeamInput(false);
+    }
   }, []);
 
+  // 🚀 Start challenge and save team name in localStorage
   const startChallenge = () => {
     if (teamName.trim()) {
+      localStorage.setItem("teamName", teamName);
       setSavedTeamName(teamName);
       setShowTeamInput(false);
     }
   };
 
+  // Submit current or skip
   const handleNext = async (skip = false) => {
     const newResponses = [...responses, skip ? "Skipped" : answer];
     setResponses(newResponses);
@@ -48,7 +60,7 @@ export default function NextChallenge() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setIsSubmitting(true);
-      
+
       const payload = {
         teamName: savedTeamName || teamName || "Anonymous",
         responses: newResponses,
@@ -65,7 +77,6 @@ export default function NextChallenge() {
           }
         );
 
-        // Show completion UI
         setShowComplete(true);
       } catch (error) {
         console.error("Error submitting:", error);
@@ -76,7 +87,7 @@ export default function NextChallenge() {
     }
   };
 
-  // Show Team Name input
+  // 🌠 Team Name Input Screen
   if (showTeamInput) {
     return (
       <div
@@ -183,7 +194,7 @@ export default function NextChallenge() {
     );
   }
 
-  // Show Completion Page
+  // ✅ Completion Page
   if (showComplete) {
     return (
       <div
@@ -238,7 +249,7 @@ export default function NextChallenge() {
           <p style={{ marginBottom: "10px", fontSize: "1.2rem", color: "#a3a3a3" }}>
             Your responses have been submitted successfully!
           </p>
-          
+
           <p style={{ marginBottom: "25px", fontSize: "0.95rem", color: "#fbbf24" }}>
             Team: {savedTeamName}
           </p>
@@ -253,7 +264,7 @@ export default function NextChallenge() {
           </div>
 
           <button
-            onClick={() => navigate("/level-2")} // navigate to Level2Page
+            onClick={() => navigate("/level-2")}
             style={{
               marginTop: "30px",
               padding: "12px 36px",
@@ -267,8 +278,6 @@ export default function NextChallenge() {
               transition: "transform 0.3s ease",
               boxShadow: "0 0 15px rgba(255, 215, 0, 0.5)",
             }}
-            onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
-            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           >
             Next Challenge →
           </button>
@@ -284,7 +293,7 @@ export default function NextChallenge() {
     );
   }
 
-  // Show Question Page
+  // 🌌 Question Page
   return (
     <div
       style={{
@@ -375,8 +384,6 @@ export default function NextChallenge() {
               transition: "transform 0.3s ease",
               boxShadow: "0 0 15px rgba(255, 215, 0, 0.5)",
             }}
-            onMouseEnter={(e) => answer && !isSubmitting && (e.target.style.transform = "scale(1.05)")}
-            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           >
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>
@@ -395,8 +402,6 @@ export default function NextChallenge() {
               cursor: isSubmitting ? "not-allowed" : "pointer",
               transition: "transform 0.3s ease",
             }}
-            onMouseEnter={(e) => !isSubmitting && (e.target.style.transform = "scale(1.05)")}
-            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           >
             Skip
           </button>

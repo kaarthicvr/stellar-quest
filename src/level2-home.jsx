@@ -5,9 +5,9 @@ export default function Level2Page() {
   const [videoError, setVideoError] = useState(false);
   const [stars, setStars] = useState([]);
   const navigate = useNavigate();
-  const videoUrl = "/videos/1006.mp4"; // keep same video or update if needed
+  const videoUrl = "/videos/1006.mp4"; // You can change this video if needed
 
-  // Generate twinkling stars
+  // Generate random twinkling stars
   useEffect(() => {
     const generatedStars = Array.from({ length: 100 }).map(() => ({
       top: `${Math.random() * 100}%`,
@@ -28,7 +28,7 @@ export default function Level2Page() {
         background: "black",
       }}
     >
-      {/* Video Background */}
+      {/* 🎥 Background Video */}
       {!videoError ? (
         <video
           autoPlay
@@ -54,13 +54,14 @@ export default function Level2Page() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom right, #1e3a8a, #581c87, #831843)",
+            background:
+              "linear-gradient(to bottom right, #1e3a8a, #581c87, #831843)",
             zIndex: 1,
           }}
         />
       )}
 
-      {/* Overlay */}
+      {/* Semi-transparent overlay */}
       <div
         style={{
           position: "absolute",
@@ -70,7 +71,7 @@ export default function Level2Page() {
         }}
       />
 
-      {/* Floating Stars */}
+      {/* ✨ Floating Stars */}
       {stars.map((star, idx) => (
         <div
           key={idx}
@@ -89,7 +90,7 @@ export default function Level2Page() {
         />
       ))}
 
-      {/* START LEVEL 2 Button */}
+      {/* 🚀 START LEVEL 2 Button */}
       <div
         style={{
           position: "absolute",
@@ -121,13 +122,13 @@ export default function Level2Page() {
           }}
           onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
           onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
-          onClick={() => navigate("/level-2")} // redirect to next page
+          onClick={() => navigate("/level-2/audio")} // ✅ Updated navigation
         >
           START LEVEL 2
         </button>
       </div>
 
-      {/* Keyframes for stars */}
+      {/* 🌟 Twinkle Animation */}
       <style>{`
         @keyframes twinkle {
           from { opacity: 0.3; }
