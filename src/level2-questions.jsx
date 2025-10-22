@@ -18,7 +18,8 @@ export default function Level2AudioPage() {
     {
       id: 1,
       title: "Question 1: Boot Sequence Interrupted",
-      description: "Task: Find and decode any hidden binary sequences in the log to recover the boot key.",
+      description:
+        "Task: Find and decode any hidden binary sequences in the log to recover the boot key.",
       fileType: "txt",
       fileContent: `=== STELLAR QUEST SPACECRAFT SYSTEM LOG ===
 [TIMESTAMP: 3847.251.14:32:07] BOOT SEQUENCE INITIATED
@@ -207,7 +208,8 @@ if __name__ == "__main__":
     {
       id: 4,
       title: "Question 4: Patch the Navigation Core",
-      description: "Task: Clean the data, recover coordinates for the primary target, and identify the correct beacon code.",
+      description:
+        "Task: Clean the data, recover coordinates for the primary target, and identify the correct beacon code.",
       fileType: "json",
       fileContent: `{
   "nav_sys!tem": {
@@ -321,7 +323,8 @@ if __name__ == "__main__":
     {
       id: 5,
       title: "Question 5: The Final Engine Test",
-      description: "Task: Determine the correct order, fix the bugs, and reach full ignition with valid status.",
+      description:
+        "Task: Determine the correct order, fix the bugs, and reach full ignition with valid status.",
       fileType: "python",
       fileContent: `# Q5: The Final Engine Test - Scrambled Engine Control System (Boss Puzzle)
 # This is the engine ignition control script, but it's completely scrambled!
@@ -469,7 +472,7 @@ if __name__ == "__main__":
     if (savedName) {
       setTeamName(savedName);
     }
-    
+
     setIsLoading(false);
   }, []);
 
@@ -480,7 +483,7 @@ if __name__ == "__main__":
     }
 
     setShowFileContent(false); // Reset file display for next question
-    
+
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
@@ -559,6 +562,35 @@ if __name__ == "__main__":
           color: "white",
         }}
       >
+        {/* Render subtle star background behind the completion card */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            overflow: "hidden",
+            pointerEvents: "none",
+          }}
+        >
+          {stars.map((s, i) => (
+            <span
+              key={`star-${i}`}
+              style={{
+                position: "absolute",
+                top: s.top,
+                left: s.left,
+                width: s.size,
+                height: s.size,
+                borderRadius: "50%",
+                background: "rgba(255, 215, 0, 0.9)",
+                opacity: s.opacity * 0.9,
+                transform: "translate(-50%, -50%)",
+                filter: "blur(0.6px)",
+              }}
+            />
+          ))}
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -571,6 +603,8 @@ if __name__ == "__main__":
             textAlign: "center",
             width: "90%",
             maxWidth: "600px",
+            position: "relative",
+            zIndex: 2,
           }}
         >
           <h1 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700" }}>
@@ -599,8 +633,38 @@ if __name__ == "__main__":
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
+        position: "relative",
       }}
     >
+      {/* Starfield background (uses `stars` so ESLint won't complain) */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
+        {stars.map((s, i) => (
+          <span
+            key={`star-${i}`}
+            style={{
+              position: "absolute",
+              top: s.top,
+              left: s.left,
+              width: s.size,
+              height: s.size,
+              borderRadius: "50%",
+              background: "rgba(255, 255, 255, 0.9)",
+              opacity: s.opacity * 0.8,
+              transform: "translate(-50%, -50%)",
+              filter: "blur(0.5px)",
+            }}
+          />
+        ))}
+      </div>
+
       <motion.div
         key={currentIndex}
         initial={{ opacity: 0, y: 30 }}
@@ -616,6 +680,8 @@ if __name__ == "__main__":
           maxWidth: "800px",
           maxHeight: "90vh",
           overflowY: "auto",
+          position: "relative",
+          zIndex: 2,
         }}
       >
         <h2 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700", marginBottom: "10px" }}>
@@ -626,9 +692,7 @@ if __name__ == "__main__":
           Question {currentIndex + 1} of {questions.length}
         </p>
 
-        <p style={{ color: "#fbbf24", fontSize: "0.85rem", marginBottom: "20px" }}>
-          Team: {teamName}
-        </p>
+        <p style={{ color: "#fbbf24", fontSize: "0.85rem", marginBottom: "20px" }}>Team: {teamName}</p>
 
         <p style={{ color: "#d1d5db", fontSize: "0.95rem", marginBottom: "20px" }}>
           {currentQuestion.description}
@@ -649,9 +713,13 @@ if __name__ == "__main__":
             marginBottom: "20px",
           }}
         >
-          {currentQuestion.fileType === "audio" 
-            ? (showFileContent ? "Hide Audio" : "🎧 Play Audio")
-            : (showFileContent ? "Hide File" : `📄 View ${currentQuestion.fileType.toUpperCase()} File`)}
+          {currentQuestion.fileType === "audio"
+            ? showFileContent
+              ? "Hide Audio"
+              : "🎧 Play Audio"
+            : showFileContent
+            ? "Hide File"
+            : `📄 View ${currentQuestion.fileType.toUpperCase()} File`}
         </button>
 
         {/* File Content Display */}
@@ -723,11 +791,7 @@ if __name__ == "__main__":
               boxShadow: "0 0 15px rgba(255, 215, 0, 0.5)",
             }}
           >
-            {isSubmitting
-              ? "Submitting..."
-              : currentIndex < questions.length - 1
-              ? "Submit & Next"
-              : "Submit All"}
+            {isSubmitting ? "Submitting..." : currentIndex < questions.length - 1 ? "Submit & Next" : "Submit All"}
           </button>
         </div>
       </motion.div>
