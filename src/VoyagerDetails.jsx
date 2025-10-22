@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // ✅ import useNavigate
+import { useNavigate } from "react-router-dom";
 
 export default function VoyagerDetails() {
   const [teamName, setTeamName] = useState("");
@@ -8,8 +8,9 @@ export default function VoyagerDetails() {
   const [voyager2, setVoyager2] = useState("");
   const [voyager3, setVoyager3] = useState("");
   const [stars, setStars] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false); // ✅ Add loading state
 
-  const navigate = useNavigate(); // ✅ initialize navigate
+  const navigate = useNavigate();
 
   // Generate twinkling stars
   useEffect(() => {
@@ -24,6 +25,12 @@ export default function VoyagerDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // ✅ Prevent duplicate submissions
+    if (isSubmitting) return;
+    
+    setIsSubmitting(true); // ✅ Set loading state to true
+    
     const payload = { teamName, voyager1, voyager2, voyager3 };
 
     try {
@@ -38,13 +45,15 @@ export default function VoyagerDetails() {
       if (result.status === "success") {
         localStorage.setItem("teamName", teamName);
         alert("Voyager details submitted successfully!");
-        navigate("/decrypt"); // ✅ redirect to decrypt page
+        navigate("/decrypt");
       } else {
         alert("Submission failed, try again.");
+        setIsSubmitting(false); // ✅ Re-enable button on failure
       }
     } catch (error) {
       console.error(error);
       alert("Error submitting form");
+      setIsSubmitting(false); // ✅ Re-enable button on error
     }
   };
 
@@ -119,6 +128,7 @@ export default function VoyagerDetails() {
             style={inputStyle}
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
+            disabled={isSubmitting} // ✅ Disable inputs during submission
           />
           <input
             type="text"
@@ -127,6 +137,7 @@ export default function VoyagerDetails() {
             style={inputStyle}
             value={voyager1}
             onChange={(e) => setVoyager1(e.target.value)}
+            disabled={isSubmitting} // ✅ Disable inputs during submission
           />
           <input
             type="text"
@@ -135,6 +146,7 @@ export default function VoyagerDetails() {
             style={inputStyle}
             value={voyager2}
             onChange={(e) => setVoyager2(e.target.value)}
+            disabled={isSubmitting} // ✅ Disable inputs during submission
           />
           <input
             type="text"
@@ -143,27 +155,30 @@ export default function VoyagerDetails() {
             style={inputStyle}
             value={voyager3}
             onChange={(e) => setVoyager3(e.target.value)}
+            disabled={isSubmitting} // ✅ Disable inputs during submission
           />
 
           <button
             type="submit"
+            disabled={isSubmitting} // ✅ Disable button during submission
             style={{
               marginTop: "20px",
               padding: "12px",
-              backgroundColor: "#6b7280",
+              backgroundColor: isSubmitting ? "#4b5563" : "#6b7280", // ✅ Change color when disabled
               border: "2px solid #fbbf24",
-              color: "#FFD700",
+              color: isSubmitting ? "#9ca3af" : "#FFD700", // ✅ Dim text when disabled
               fontWeight: "bold",
               letterSpacing: "0.1em",
               borderRadius: "8px",
-              cursor: "pointer",
+              cursor: isSubmitting ? "not-allowed" : "pointer", // ✅ Change cursor
               fontFamily: "'Cinzel', serif",
-              transition: "transform 0.3s ease",
+              transition: "transform 0.3s ease, background-color 0.3s ease",
+              opacity: isSubmitting ? 0.6 : 1, // ✅ Reduce opacity when disabled
             }}
-            onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
+            onMouseEnter={(e) => !isSubmitting && (e.target.style.transform = "scale(1.05)")}
             onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"} {/* ✅ Show loading text */}
           </button>
         </form>
       </motion.div>

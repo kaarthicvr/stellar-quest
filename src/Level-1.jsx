@@ -15,11 +15,98 @@ export default function NextChallenge() {
   const navigate = useNavigate();
 
   const questions = [
-    { question: "Decrypt this Caesar cipher (shift 3): 'Khdulvfrrol'" },
-    { question: "Decrypt (shift 5): 'Yjxy'" },
-    { question: "Decrypt (shift 2): 'Jgct Gpfgcn'" },
-    { question: "Decrypt (shift 7): 'Pualy Pz Avfctta'" },
-    { question: "Decrypt (shift 4): 'Xli tperx mw hsjew'" },
+    {
+      title: "Question 1: Alien Beacon Transmission",
+      question: `Task:
+- Identify the encoding method (binary-to-ASCII and/or Base32)
+- Convert the patterns to reveal the hidden string
+
+Binary Data:
+01001011 01101111 01101100 01101100 01111001 01110111 01101111 01101111 01100100 01011111 01001010 01100101 01110011 01110101 01110011`
+    },
+    {
+      title: "Question 2: The Shifted Cipher",
+      question: `Task:
+- Caesar shifted message (shift key unknown, try all shifts)
+
+Encrypted Text:
+ODWLWXGH: 75.6934`
+    },
+    {
+      title: "Question 3: Operator Algebra Challenge",
+      question: `Task:
+1. Understand the custom operators:
+   ⊗ means × (multiplication)
+   ⊙ means XOR (bitwise exclusive OR)
+2. Solve the equation step by step
+3. The result is the longitude coordinate
+
+COORDINATE CALCULATION PROTOCOL:
+Custom Operators Defined: ⊗ = × (multiply), ⊙ = XOR (bitwise XOR)
+
+Solve for X: ((85 ⊗ 5) ⊙ 140) + 421 = X
+Where X represents: LONGITUDE = X / 10
+
+VERIFY YOUR CALCULATION CAREFULLY`
+    },
+    {
+      title: "Question 4: Linear Congruential Generator Reversal",
+      question: `Task:
+1. Use the LCG formula: x_{n+1} = (a × x_n + c) mod m
+2. Given parameters a, c, m and three outputs, calculate the original seed x_0
+3. Use modular inverse techniques to reverse the generation
+
+PSEUDORANDOM SEQUENCE REVERSAL CHALLENGE:
+LCG Parameters: a = 13, c = 7, m = 256
+
+Three Consecutive Outputs Detected:
+Output 1: 20
+Output 2: 11
+Output 3: 150
+
+FORMULA: x_{n+1} = (a × x_n + c) mod m
+Find the SEED (x_0) that generates this sequence.`
+    },
+    {
+      title: "Question 5: Verification String Check",
+      question: `Task:
+1. Calculate the sum of ASCII values for each character in the verification string
+2. Apply modulo 1000 to the sum
+3. If the result matches the provided checksum, the coordinate is valid
+
+Verification String: "STARFORGE_SECTOR_GAMMA"
+
+Calculate: (Sum of ASCII values) mod 1000`
+    },
+    {
+      title: "Question 6: Hexadecimal Grid Puzzle",
+      question: `Task:
+1. Read the grid systematically: row by row, left to right
+2. Convert each 2-character hex value to its ASCII equivalent
+3. Ignore any 'XX' padding values
+4. Assemble the complete instruction string
+
+Grid:
+     C1   C2   C3   C4   C5
+R1:  42   61   73   65   36
+R2:  34   2D   52   4F   54
+R3:  31   33   2D   52   65
+R4:  76   65   72   73   65
+R5:  54   68   65   53   74
+R6:  72   69   6E   67   XX`
+    },
+    {
+      title: "Question 7: Multi-Layer Cipher Finale (Boss)",
+      question: `Task:
+1. Apply multiple decryption steps in sequence:
+   - Base64 decode
+   - ROT13 decipher
+   - Reverse the string
+2. Extract the final beacon message
+
+Encrypted Message:
+LkNIWFBOTyBRUlJBIFYgLkZHRlZLUiBSVEVCUyBSVUcgLlFSWFBCWSBGUkdOQVZRRUJCUCA6UlRORkZSWiBOWlpOVCA6RUJHUFJGIHp4NDg2IDpSUEFOR0ZWUSB6MSA6R1lOIDQuMTcgOkFCWSA0Mzk2LjU3IDpHTlkgOlFSWkVWU0FCUCBGUkdOQVZRRUJCUA==`
+    }
   ];
 
   // 🌟 Generate stars + load existing team name
@@ -238,7 +325,9 @@ export default function NextChallenge() {
             boxShadow: "0 0 40px rgba(255, 215, 0, 0.6)",
             textAlign: "center",
             width: "90%",
-            maxWidth: "600px",
+            maxWidth: "700px",
+            maxHeight: "90vh",
+            overflowY: "auto",
             zIndex: 10,
           }}
         >
@@ -336,35 +425,55 @@ export default function NextChallenge() {
           boxShadow: "0 0 40px rgba(255, 215, 0, 0.6)",
           textAlign: "center",
           width: "90%",
-          maxWidth: "600px",
+          maxWidth: "800px",
+          maxHeight: "90vh",
+          overflowY: "auto",
           zIndex: 10,
         }}
       >
-        <h1 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700", marginBottom: "20px" }}>
-          🔐 DECRYPT CHALLENGE {currentQuestion + 1} / {questions.length}
+        <h1 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700", marginBottom: "15px", fontSize: "1.5rem" }}>
+          🔐 {questions[currentQuestion].title}
         </h1>
 
-        <p style={{ marginBottom: "25px", fontSize: "1.2rem", color: "#a3a3a3", fontFamily: "'Space Mono', monospace" }}>
-          {questions[currentQuestion].question}
+        <p style={{ marginBottom: "5px", fontSize: "0.9rem", color: "#fbbf24" }}>
+          Question {currentQuestion + 1} of {questions.length}
         </p>
 
-        <input
-          type="text"
+        <div
+          style={{
+            marginBottom: "25px",
+            fontSize: "0.95rem",
+            color: "#d1d5db",
+            fontFamily: "'Space Mono', monospace",
+            textAlign: "left",
+            whiteSpace: "pre-wrap",
+            backgroundColor: "rgba(31, 41, 55, 0.5)",
+            padding: "20px",
+            borderRadius: "8px",
+            border: "1px solid #374151",
+            maxHeight: "300px",
+            overflowY: "auto",
+          }}
+        >
+          {questions[currentQuestion].question}
+        </div>
+
+        <textarea
           placeholder="Enter your answer..."
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && answer && handleNext()}
+          rows={4}
           style={{
-            padding: "10px 15px",
+            padding: "12px 15px",
             borderRadius: "6px",
             border: "1px solid #fbbf24",
             backgroundColor: "rgba(31, 41, 55, 0.8)",
             color: "#fff",
             fontSize: "16px",
             outline: "none",
-            width: "80%",
-            textAlign: "center",
+            width: "90%",
             fontFamily: "'Space Mono', monospace",
+            resize: "vertical",
           }}
         />
 
