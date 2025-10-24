@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Level2AudioPage() {
   const [stars, setStars] = useState([]);
@@ -10,6 +11,8 @@ export default function Level2AudioPage() {
   const [showComplete, setShowComplete] = useState(false);
   const [showFileContent, setShowFileContent] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbz2GCyKcc7d6aF2e3uTBdbknAp_4M50fIRY5Y-GdGNE8ZTemx2fJ0w1wkn1QlLJKL-z/exec";
@@ -31,6 +34,7 @@ export default function Level2AudioPage() {
 [INFO] Life support systems nominal
 [ERR] 0x4A7B Navigation core offline - retry in 30 seconds
 
+
 [TIMESTAMP: 3847.251.14:32:31] AUTO-RECOVERY ATTEMPT #1
 [WARN] Power surge detected in fusion reactor chamber 3
 [DEBUG] Attempting to restore backup power...
@@ -41,6 +45,7 @@ export default function Level2AudioPage() {
 [DEBUG] Initiating emergency beacon transmission...
 [ERR] 0x1234 Communication array damaged - signal weak
 [CRITICAL] Life support reserves: 6 hours 23 minutes remaining
+
 
 [TIMESTAMP: 3847.251.14:33:45] DIAGNOSTIC SCAN RESULTS
 [INFO] Scanning all ship systems...
@@ -54,6 +59,7 @@ export default function Level2AudioPage() {
 [ERR] 0xBEEF Sensor array malfunction - external visibility compromised
 [CRITICAL] Multiple system failures cascading
 
+
 [TIMESTAMP: 3847.251.14:35:12] EMERGENCY PROTOCOLS ACTIVE
 [WARN] Entering lockdown mode for crew safety
 [DEBUG] Isolating damaged sections...
@@ -66,6 +72,7 @@ export default function Level2AudioPage() {
 [INFO] Auto-pilot engaged for controlled descent
 [ERR] 0x5678 Landing gear deployment mechanism jammed
 
+
 [TIMESTAMP: 3847.251.14:37:08] LANDING SEQUENCE INITIATED
 [CRITICAL] BRACE FOR IMPACT - All crew to emergency stations
 [WARN] Heat shield integrity at 72% - within acceptable parameters
@@ -77,6 +84,7 @@ export default function Level2AudioPage() {
 [WARN] Surface impact in T-minus 8 minutes
 [DEBUG] Emergency landing protocol Zeta-7 activated
 [INFO] All crew members report ready status
+
 
 [TIMESTAMP: 3847.251.14:44:31] SURFACE IMPACT DETECTED
 [CRITICAL] IMPACT! All systems experiencing severe shock damage
@@ -91,6 +99,7 @@ export default function Level2AudioPage() {
 [DEBUG] Beginning emergency repair procedures...
 [INFO] Distress beacon active on emergency frequency
 
+
 [TIMESTAMP: 3847.251.14:46:15] POST-CRASH ASSESSMENT
 [CRITICAL] Ship systems operating at 23% capacity
 [ERR] 0xABCD Hyperdrive core completely offline - repair required
@@ -104,6 +113,7 @@ export default function Level2AudioPage() {
 [DEBUG] Beginning systematic repair of critical systems...
 [INFO] Prioritizing life support and communication systems
 
+
 [TIMESTAMP: 3847.251.14:48:03] REPAIR STATUS UPDATE
 [WARN] Fusion reactor operating at minimum safe levels
 [DEBUG] Attempting to restore primary computer core...
@@ -113,6 +123,7 @@ export default function Level2AudioPage() {
 [WARN] Defensive systems offline - crew vulnerability high
 [DEBUG] Initiating stealth mode to avoid detection...
 [INFO] All repair teams report steady progress on critical systems
+
 
 === END OF ACCESSIBLE LOG DATA ===
 [CORRUPTED] [CORRUPTED] [CORRUPTED] [CORRUPTED]
@@ -128,7 +139,9 @@ export default function Level2AudioPage() {
 # The checksum algorithm should: 1) Sum ASCII values, 2) Apply quantum correction factor, 3) Modulo operation
 # However, there are multiple subtle bugs that need to be fixed
 
+
 import math
+
 
 def quantum_stabilizer_checksum(module_id, power_level):
     """
@@ -161,6 +174,7 @@ def quantum_stabilizer_checksum(module_id, power_level):
     
     return final_checksum
 
+
 def verify_module_integrity(checksum_value):
     """
     Verify if the calculated checksum indicates stable module operation
@@ -171,6 +185,7 @@ def verify_module_integrity(checksum_value):
         return "STABLE"
     else:
         return "UNSTABLE"
+
 
 # Main execution
 if __name__ == "__main__":
@@ -331,10 +346,13 @@ if __name__ == "__main__":
 # Functions are out of order, variables are mixed up, and there are several bugs
 # The crew must reconstruct the correct execution order and fix all issues
 
+
 # WARNING: DO NOT RUN THIS SCRIPT AS-IS - IT WILL CAUSE ENGINE FAILURE!
+
 
 import random
 import time
+
 
 # SCRAMBLED FUNCTION #1 - This should be called LAST
 def display_engine_status(thrust_power, fuel_efficiency):
@@ -345,6 +363,7 @@ def display_engine_status(thrust_power, fuel_efficiency):
     else:
         return "❌ ENGINE FAILURE - Critical systems offline"
 
+
 # SCRAMBLED FUNCTION #2 - This has parameter bugs
 def calculate_quantum_resonance(core_temp, pressure_reading):
     # BUG: Wrong mathematical formula and variable names
@@ -353,6 +372,7 @@ def calculate_quantum_resonance(core_temp, pressure_reading):
         return False
     else:
         return True
+
 
 # SCRAMBLED FUNCTION #3 - This should be called SECOND  
 def initialize_fusion_core(activation_code):
@@ -366,6 +386,7 @@ def initialize_fusion_core(activation_code):
     else:
         # BUG: Should return None, None or raise exception
         return 0, 0
+
 
 # SCRAMBLED FUNCTION #4 - This function has logical errors
 def calibrate_thrust_vectors(resonance_stable, core_temp, plasma_pressure):
@@ -388,6 +409,7 @@ def calibrate_thrust_vectors(resonance_stable, core_temp, plasma_pressure):
     print(f"🎯 Thrust vectors calibrated: {final_thrust:.1f}% power")
     return final_thrust
 
+
 # SCRAMBLED FUNCTION #5 - This should be called FIRST
 def verify_startup_sequence(module_checksum):
     print("🔍 Verifying engine startup sequence...")
@@ -401,6 +423,7 @@ def verify_startup_sequence(module_checksum):
     else:
         print(f"❌ Checksum mismatch! Expected: {expected_checksum}, Got: {module_checksum}")
         return None
+
 
 # SCRAMBLED FUNCTION #6 - This calculates fuel efficiency
 def calculate_fuel_efficiency(thrust_power, core_temp):
@@ -420,6 +443,7 @@ def calculate_fuel_efficiency(thrust_power, core_temp):
     
     print(f"⛽ Fuel efficiency calculated: {final_efficiency:.1f}%")
     return final_efficiency
+
 
 # MAIN EXECUTION SEQUENCE - COMPLETELY SCRAMBLED!
 if __name__ == "__main__":
@@ -497,7 +521,7 @@ if __name__ == "__main__":
     setResponses(newResponses);
   };
 
-  // ✅ Submit all 5 responses together to Google Sheet
+  // Submit all 5 responses together to Google Sheet
   const handleSubmitAll = async () => {
     if (!teamName.trim()) {
       alert("Team name not found. Please go back to Level 1.");
@@ -528,6 +552,52 @@ if __name__ == "__main__":
     }
   };
 
+  // NEW: Skip handler
+  const handleSkip = async () => {
+    // Ensure team name exists
+    if (!teamName.trim()) {
+      alert("Team name not found. Please go back to Level 1.");
+      return;
+    }
+
+    // Mark locally as skipped
+    const newResponses = [...responses];
+    newResponses[currentIndex] = "SKIPPED";
+    setResponses(newResponses);
+
+    // Prepare single-question payload so the skipped response is recorded immediately
+    const payload = {
+      teamName,
+      questionId: questions[currentIndex].id,
+      response: "SKIPPED",
+    };
+
+    setIsSubmitting(true);
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      // advance to next or finish
+      setShowFileContent(false);
+      if (currentIndex < questions.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        // last question skipped => proceed to final completion flow
+        // still run full submit to ensure server receives full responses if needed
+        // (this will also include the SKIPPED marker we just set locally)
+        await handleSubmitAll();
+      }
+    } catch (err) {
+      console.error("Error submitting skipped response:", err);
+      alert("Error submitting skipped response. Try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   // Loading screen while retrieving team name
   if (isLoading) {
     return (
@@ -548,7 +618,7 @@ if __name__ == "__main__":
     );
   }
 
-  // ✅ Completion screen
+  // Completion screen
   if (showComplete) {
     return (
       <div
@@ -614,12 +684,32 @@ if __name__ == "__main__":
           <p style={{ color: "#9ca3af", marginTop: "15px" }}>
             All {questions.length} questions have been answered and submitted successfully!
           </p>
+
+          {/* NEW: Go To Next Level button */}
+          <div style={{ marginTop: 24 }}>
+            <button
+              onClick={() => navigate("/level-3")}
+              style={{
+                padding: "12px 28px",
+                fontSize: "16px",
+                fontWeight: "700",
+                color: "#0f172a",
+                background: "#fbbf24",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
+              }}
+            >
+              Go To Next Level
+            </button>
+          </div>
         </motion.div>
       </div>
     );
   }
 
-  // 🎧 Question screen
+  // Current question
   const currentQuestion = questions[currentIndex];
 
   return (
@@ -775,7 +865,25 @@ if __name__ == "__main__":
           }}
         />
 
-        <div style={{ marginTop: "25px" }}>
+        <div style={{ marginTop: "25px", display: "flex", gap: 12, justifyContent: "center", alignItems: "center" }}>
+          <button
+            onClick={handleSkip}
+            disabled={isSubmitting}
+            style={{
+              padding: "12px 20px",
+              fontSize: "16px",
+              fontWeight: "700",
+              color: "#0f172a",
+              background: "#9ca3af",
+              border: "none",
+              borderRadius: "8px",
+              cursor: isSubmitting ? "not-allowed" : "pointer",
+              boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+            }}
+          >
+            {isSubmitting ? "Processing..." : "Skip"}
+          </button>
+
           <button
             onClick={handleNext}
             disabled={isSubmitting}
