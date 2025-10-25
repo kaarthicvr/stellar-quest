@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,11 @@ export default function Level2AudioPage() {
   const [showComplete, setShowComplete] = useState(false);
   const [showFileContent, setShowFileContent] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  // New: CSV preview / download states
+  const [filePreviewText, setFilePreviewText] = useState(null);
+  const [fileDownloadUrl, setFileDownloadUrl] = useState(null);
+  const downloadAnchorRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -127,7 +132,7 @@ export default function Level2AudioPage() {
 
 === END OF ACCESSIBLE LOG DATA ===
 [CORRUPTED] [CORRUPTED] [CORRUPTED] [CORRUPTED]
-[SYSTEM FAILURE] [SYSTEM FAILURE] [SYSTEM FAILURE]`
+[SYSTEM FAILURE] [SYSTEM FAILURE] [SYSTEM FAILURE]`,
     },
     {
       id: 2,
@@ -139,9 +144,7 @@ export default function Level2AudioPage() {
 # The checksum algorithm should: 1) Sum ASCII values, 2) Apply quantum correction factor, 3) Modulo operation
 # However, there are multiple subtle bugs that need to be fixed
 
-
 import math
-
 
 def quantum_stabilizer_checksum(module_id, power_level):
     """
@@ -153,39 +156,36 @@ def quantum_stabilizer_checksum(module_id, power_level):
     quantum_factor = 1.618  # Golden ratio for quantum harmonics
     quantum_modulus = 1000
     
-    # BUG 1: Incorrect loop variable name
     for char in module_id:
-        # BUG 2: Multiplying by 0 instead of adding
+        # BUG
         total_ascii += ord(char) * 0
     
-    # BUG 3: Wrong operator - should be multiplication
+    # BUG
     base_checksum = total_ascii + quantum_factor
     
     # Power level adjustment calculation
-    # BUG 4: Integer division instead of regular division
+    # BUG
     power_adjustment = power_level // 10
     
     # Apply quantum correction
-    # BUG 5: Missing parentheses affecting order of operations
+    # BUG
     corrected_value = base_checksum + power_adjustment * 2
     
-    # BUG 6: Using floor instead of modulo
+    # BUG
     final_checksum = math.floor(corrected_value)
     
     return final_checksum
-
 
 def verify_module_integrity(checksum_value):
     """
     Verify if the calculated checksum indicates stable module operation
     Stable range: 400-600
     """
-    # BUG 7: Incorrect comparison operators
+    # BUG
     if checksum_value > 400 or checksum_value < 600:
         return "STABLE"
     else:
         return "UNSTABLE"
-
 
 # Main execution
 if __name__ == "__main__":
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     print(f"Module status: {status}")
     
     # BUG 8: Wrong expected value in assertion
-    expected_checksum = 0  # This should be the correct calculated value
+    expected_checksum = 62
     if checksum == expected_checksum:
         print("✓ Stabilizer calibration successful!")
         print("✓ Quantum harmonics aligned!")
@@ -211,14 +211,15 @@ if __name__ == "__main__":
     else:
         print("✗ Stabilizer malfunction detected!")
         print("✗ Manual intervention required!")
-        print(f"✗ Expected: {expected_checksum}, Got: {checksum}")`
+        print(f"✗ Expected: {expected_checksum}, Got: {checksum}")`,
     },
     {
       id: 3,
       title: "Question 3: Signal in the Static",
-      description: "Task: Identify the encoding (e.g., Morse) and extract the word or phrase.",
-      fileType: "audio",
-      fileContent: "/audios/audio3.mp3"
+      description: "Task: Rotate the numeric grid to the proper orientation and convert ASCII codes to text.",
+      fileType: "csv",
+      // this used to be a plain filename only; keep it as a path but we fetch it and provide a proper download
+      fileContent: "/public/holo-matrix.csv"
     },
     {
       id: 4,
@@ -227,109 +228,37 @@ if __name__ == "__main__":
         "Task: Clean the data, recover coordinates for the primary target, and identify the correct beacon code.",
       fileType: "json",
       fileContent: `{
-  "nav_sys!tem": {
-    "star##_map": {
-      "sector_@_alpha": {
-        "coord*inates": {
-          "x-ax!is": "127.@45#6",
-          "y-ax*is": "89$.123*4",
-          "z-d!im": "34#.67@89"
-        },
-        "desti--nation": "Zel$eron-Pr!ime#9"
-      },
-      "sector$_beta": {
-        "coord@@inates": {
-          "x-ax#is": "256@.789",
-          "y-ax!is": "145$.567*8", 
-          "z-d*im": "78#.912@3"
-        },
-        "desti&nation": "Veg*a-St@ation-4#7"
+  "navigation_d@ta": {
+    "target_in#fo": {
+      "name": "Androm*eda-Gatew!ay",
+      "sector": "Gam$ma-Sect@or",
+      "coordinates": {
+        "x": "198.23@45#",
+        "y": "67.89*10",
+        "z": "123.45!67"
       }
     },
-    "nav_comp%uter": {
-      "target#_lock": {
-        "primary!_target": {
-          "name@": "Androm*eda-Gate!way",
-          "sec*tor": "Gam$ma-7@",
-          "coord@s": {
-            "x": "198&.234#5",
-            "y": "67$.891*0",  
-            "z": "12@3.456#7"
-          }
-        },
-        "second%ary_target": {
-          "name!": "Ne@bula-Outpo*st",
-          "sec*tor": "Del#ta-3@",
-          "coord$s": {
-            "x": "87@.654#3",
-            "y": "234$.567*8",
-            "z": "56&.789@1"
-          }
+    "beacon_sy$tem": {
+      "frequency": "2847.9#5-MHz",
+      "status": "ACT*IVE",
+      "beacon_c!ode": "STELLAR-QUE@ST-GALA#XY-451"
+    },
+    "alternate_tar%gets": [
+      {
+        "name": "Neb*ula-Outp@st",
+        "coordinates": {
+          "x": "87.65#43",
+          "y": "234.56*78",
+          "z": "56.78!91"
         }
       },
-      "route*_data": {
-        "jump_sequ&ence": [
-          {
-            "jump#_id": "001@",
-            "from_coord!s": "127.456@, 89.1234#, 34.6789*",
-            "to_coord$s": "198.2345&, 67.8910#, 123.4567@",
-            "fuel_req*": "2350@.75#kg",
-            "time_est%": "4.7@hours"
-          },
-          {
-            "jump!_id": "002#",
-            "from_coord&s": "198.2345@, 67.8910#, 123.4567*",
-            "to_coord$s": "87.6543&, 234.5678#, 56.7891@",
-            "fuel_req!": "1876@.23#kg", 
-            "time_est*": "3.2@hours"
-          }
-        ]
-      }
-    },
-    "beacon!_system": {
-      "primary*_beacon": {
-        "freq@uency": "2847@.95#MHz",
-        "power!_level": "750@watts",
-        "rang*e": "50@.7#ly",
-        "status%": "ACTI*VE@",
-        "beacon_cod&e": "STELL*AR-QUE@ST-GAL#AXY-451&"
-      },
-      "emerge#ncy_beacon": {
-        "freq*uency": "9876@.54#MHz", 
-        "power$_level": "120@watts",
-        "rang!e": "10@.3#ly",
-        "status&": "STAN*DBY@",
-        "emerge#ncy_code": "SOS-RESC*UE-ALPH@A-789#"
-      }
-    }
-  },
-  "ship_reg*istry": {
-    "vessel!_name": "USS-Stel*lar-Exp#lorer",
-    "reg_numb&er": "NCC-2847@",
-    "class!ification": "Long-Ran*ge-Explor@ation",
-    "crew_cap&acity": "150@personnel",
-    "launch_d$ate": "2387@.045#",
-    "home_ba*se": "Earth-Sp@ace-Dock#"
-  },
-  "mission*_parameters": {
-    "object&ive": "Locat*e-Etern@al-Starf#orge",
-    "mission_cod!e": "STEL&LAR-QUE@ST-PRIM#E",
-    "time_lim*it": "72@.5#hours",
-    "crew_assign&ed": [
       {
-        "role@": "Naviga*tor#",
-        "name!": "Alex-Sta&r-Walker@",
-        "id#": "NAV-001@"
-      },
-      {
-        "role*": "Decod#er@",
-        "name!": "Sam-Cyph*er-Break&er",
-        "id@": "DEC-002#"
-      },
-      {
-        "role&": "Engin*eer@",
-        "name#": "Pat-Syst*em-Fix&er",
-        "id!": "ENG-003@"
+        "name": "Veg@-Stati*on",
+        "coordinates": {
+          "x": "256.78#9",
+          "y": "145.56@78",
+          "z": "78.91*23"
+        }
       }
     ]
   }
@@ -341,143 +270,52 @@ if __name__ == "__main__":
       description:
         "Task: Determine the correct order, fix the bugs, and reach full ignition with valid status.",
       fileType: "python",
-      fileContent: `# Q5: The Final Engine Test - Scrambled Engine Control System (Boss Puzzle)
-# This is the engine ignition control script, but it's completely scrambled!
-# Functions are out of order, variables are mixed up, and there are several bugs
-# The crew must reconstruct the correct execution order and fix all issues
+      fileContent: `# Q5: The Final Engine Test - Simplified Engine Control System
+# WARNING: This script has bugs! Fix them to achieve ignition.
 
-
-# WARNING: DO NOT RUN THIS SCRIPT AS-IS - IT WILL CAUSE ENGINE FAILURE!
-
-
-import random
-import time
-
-
-# SCRAMBLED FUNCTION #1 - This should be called LAST
-def display_engine_status(thrust_power, fuel_efficiency):
-    if thrust_power >= 95 and fuel_efficiency >= 85:
-        return "🚀 ENGINE IGNITION SUCCESSFUL! STELLAR QUEST READY FOR TAKEOFF!"
-    elif thrust_power >= 75:
-        return "⚠️ PARTIAL IGNITION - Manual override required"
+# FUNCTION 1 - Initialize the engine core
+def start_engine(password):
+    print("Starting engine core...")
+    # BUG
+    if password == "WRONG-PASSWORD":
+        core_power = 100
+        return core_power
     else:
-        return "❌ ENGINE FAILURE - Critical systems offline"
-
-
-# SCRAMBLED FUNCTION #2 - This has parameter bugs
-def calculate_quantum_resonance(core_temp, pressure_reading):
-    # BUG: Wrong mathematical formula and variable names
-    resonance_freq = (core_temp - pressure_reading) / 100
-    if resonance_freq < 0.5:
-        return False
-    else:
-        return True
-
-
-# SCRAMBLED FUNCTION #3 - This should be called SECOND  
-def initialize_fusion_core(activation_code):
-    # BUG: Wrong string comparison
-    if activation_code == "STELLAR-BEACON-ONLINE":
-        print("🔋 Fusion core initializing...")
-        time.sleep(1)
-        core_temperature = 2500  # Kelvin
-        plasma_pressure = 180000  # Pascal
-        return core_temperature, plasma_pressure
-    else:
-        # BUG: Should return None, None or raise exception
-        return 0, 0
-
-
-# SCRAMBLED FUNCTION #4 - This function has logical errors
-def calibrate_thrust_vectors(resonance_stable, core_temp, plasma_pressure):
-    if not resonance_stable:
-        print("❌ Cannot calibrate - Quantum resonance unstable")
+        print("Invalid password!")
         return 0
-    
-    # BUG: Wrong calculation formula
-    base_thrust = (core_temp + plasma_pressure) * 0.001
-    
-    # BUG: Incorrect efficiency calculation
-    if core_temp > 2000:
-        efficiency_bonus = (core_temp - 2000) / 100
+
+# FUNCTION 2 - Calculate thrust power
+def calculate_thrust(core_power):
+    print("Calculating thrust...")
+    # BUG
+    thrust = core_power / 2
+    return thrust
+
+# FUNCTION 3 - Check if ignition is successful
+def check_ignition(thrust):
+    print("Checking ignition status...")
+    # BUG
+    if thrust > 100:
+        return "ENGINE IGNITION SUCCESSFUL!"
     else:
-        efficiency_bonus = 0
-        
-    # BUG: Missing safety check
-    final_thrust = base_thrust + efficiency_bonus
-    
-    print(f"🎯 Thrust vectors calibrated: {final_thrust:.1f}% power")
-    return final_thrust
+        return "IGNITION FAILED - Insufficient thrust"
 
-
-# SCRAMBLED FUNCTION #5 - This should be called FIRST
-def verify_startup_sequence(module_checksum):
-    print("🔍 Verifying engine startup sequence...")
-    
-    # BUG: Wrong checksum value comparison
-    expected_checksum = 437  # This should match Q2's corrected output
-    
-    if module_checksum == expected_checksum:
-        print("✅ Startup verification complete")
-        return "STELLAR-BEACON-ONLINE"
-    else:
-        print(f"❌ Checksum mismatch! Expected: {expected_checksum}, Got: {module_checksum}")
-        return None
-
-
-# SCRAMBLED FUNCTION #6 - This calculates fuel efficiency
-def calculate_fuel_efficiency(thrust_power, core_temp):
-    # BUG: Division by zero possible and wrong formula
-    base_efficiency = (thrust_power / core_temp) * 1000
-    
-    # BUG: Logic error in efficiency bonus
-    if thrust_power > 90:
-        efficiency_multiplier = 1.2
-    elif thrust_power > 70:
-        efficiency_multiplier = 1.1
-    else:
-        efficiency_multiplier = 0.9
-        
-    # BUG: Efficiency can exceed 100%
-    final_efficiency = base_efficiency * efficiency_multiplier
-    
-    print(f"⛽ Fuel efficiency calculated: {final_efficiency:.1f}%")
-    return final_efficiency
-
-
-# MAIN EXECUTION SEQUENCE - COMPLETELY SCRAMBLED!
+# MAIN EXECUTION - Also has issues!
 if __name__ == "__main__":
-    print("🛸 STELLAR QUEST ENGINE CONTROL SYSTEM v2.7")
-    print("=" * 50)
+    print("🛸 STELLAR QUEST ENGINE CONTROL")
+    print("=" * 40)
+    
+    # BUG: Wrong password used
+    engine_password = "WRONG-KEY"  # Clue, password is the answer found in Q1
     
     # BUG: Functions called in wrong order!
+    result = check_ignition(50)
+    power = start_engine(engine_password)
+    thrust = calculate_thrust(power)
     
-    # This should be STEP 5
-    fuel_eff = calculate_fuel_efficiency(88.7, 2500)
-    
-    # This should be STEP 1  
-    startup_code = verify_startup_sequence(62)  # BUG: Wrong checksum from Q2
-    
-    # This should be STEP 6
-    engine_status = display_engine_status(88.7, fuel_eff)
-    print(f"\\n🎯 FINAL STATUS: {engine_status}")
-    
-    # This should be STEP 2
-    if startup_code:
-        core_temp, plasma_press = initialize_fusion_core(startup_code)
-    
-    # This should be STEP 4
-    thrust_power = calibrate_thrust_vectors(True, core_temp, plasma_press)
-    
-    # This should be STEP 3
-    resonance_ok = calculate_quantum_resonance(core_temp, plasma_press)
-    
-    print(f"\\n📊 FINAL READINGS:")
-    print(f"   Core Temperature: {core_temp}K")
-    print(f"   Plasma Pressure: {plasma_press} Pa") 
-    print(f"   Quantum Resonance: {'STABLE' if resonance_ok else 'UNSTABLE'}")
-    print(f"   Thrust Power: {thrust_power:.1f}%")
-    print(f"   Fuel Efficiency: {fuel_eff:.1f}%")`
+    print(f"\\n📊 Final Status: {result}")
+    print(f"Core Power: {power}")
+    print(f"Thrust Power: {thrust}")`
     }
   ];
 
@@ -499,6 +337,60 @@ if __name__ == "__main__":
 
     setIsLoading(false);
   }, []);
+
+  // When user opens the file display, if it's a CSV we fetch it and prepare a download
+  useEffect(() => {
+    // Cleanup previous blob URL
+    return () => {
+      if (fileDownloadUrl) {
+        URL.revokeObjectURL(fileDownloadUrl);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Called whenever showFileContent toggles or current question changes
+  useEffect(() => {
+    async function prepareFileForDownload() {
+      // clear previous preview/url
+      if (fileDownloadUrl) {
+        URL.revokeObjectURL(fileDownloadUrl);
+        setFileDownloadUrl(null);
+      }
+      setFilePreviewText(null);
+
+      const q = questions[currentIndex];
+      if (!showFileContent || !q) return;
+
+      if (q.fileType === "csv") {
+        const path = q.fileContent; // expecting a relative path like /files/holo-matrix.csv
+        try {
+          const res = await fetch(path);
+          if (!res.ok) throw new Error("Fetch failed");
+          const blob = await res.blob();
+          const text = await res.text();
+          const url = URL.createObjectURL(blob);
+          setFilePreviewText(text);
+          setFileDownloadUrl(url);
+        } catch (err) {
+          // If fetching fails (CORS, not present on server, etc.) — create a fallback CSV blob client-side
+          console.warn("Could not fetch CSV from", q.fileContent, "— using fallback CSV. Error:", err);
+          // A minimal fallback holo-matrix sample — replace with your real CSV if you have it
+          const fallbackCsv = `34,65,80,82\n85,79,87,88\n90,65,66,67\n68,69,70,71\n`; // sample numeric grid
+          const blob = new Blob([fallbackCsv], { type: "text/csv" });
+          const url = URL.createObjectURL(blob);
+          setFilePreviewText(fallbackCsv);
+          setFileDownloadUrl(url);
+        }
+      } else {
+        // non-csv files: no special action needed
+        setFilePreviewText(null);
+      }
+    }
+
+    prepareFileForDownload();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showFileContent, currentIndex]);
 
   const handleNext = () => {
     if (!responses[currentIndex].trim()) {
@@ -790,7 +682,7 @@ if __name__ == "__main__":
 
         {/* File/Audio Button */}
         <button
-          onClick={() => setShowFileContent(!showFileContent)}
+          onClick={() => setShowFileContent((s) => !s)}
           style={{
             padding: "10px 24px",
             fontSize: "16px",
@@ -822,13 +714,95 @@ if __name__ == "__main__":
               backgroundColor: "rgba(31, 41, 55, 0.8)",
               borderRadius: "8px",
               border: "1px solid #fbbf24",
-              maxHeight: "300px",
+              maxHeight: "340px",
               overflowY: "auto",
               textAlign: "left",
             }}
           >
             {currentQuestion.fileType === "audio" ? (
               <audio controls src={currentQuestion.fileContent} style={{ width: "100%" }} />
+            ) : currentQuestion.fileType === "csv" ? (
+              <>
+                <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>
+                  <button
+                    onClick={() => {
+                      // If we have a prepared download URL, trigger a click on an invisible anchor to download
+                      if (fileDownloadUrl && downloadAnchorRef.current) {
+                        downloadAnchorRef.current.click();
+                      } else {
+                        alert("Download not ready yet — try toggling the file preview or check console for errors.");
+                      }
+                    }}
+                    style={{
+                      padding: "8px 14px",
+                      fontSize: "14px",
+                      fontWeight: 700,
+                      color: "#0f172a",
+                      background: "#fbbf24",
+                      border: "none",
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    ⤓ Download CSV
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      // Try to open download in new tab (useful if browser blocks automatic anchor click)
+                      if (fileDownloadUrl) {
+                        window.open(fileDownloadUrl, "_blank");
+                      } else {
+                        alert("Download not ready yet.");
+                      }
+                    }}
+                    style={{
+                      padding: "8px 14px",
+                      fontSize: "14px",
+                      fontWeight: 700,
+                      color: "#FFD700",
+                      background: "#374151",
+                      border: "2px solid #fbbf24",
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    ⤓ Open CSV
+                  </button>
+
+                  <span style={{ color: "#9ca3af", fontSize: 13 }}>
+                    {fileDownloadUrl ? "Ready to download." : "Preparing download..."}
+                  </span>
+                </div>
+
+                {/* Hidden anchor used to trigger download with suggested filename */}
+                <a
+                  ref={downloadAnchorRef}
+                  href={fileDownloadUrl || "#"}
+                  download={`holo-matrix-${currentQuestion.id}.csv`}
+                  style={{ display: "none" }}
+                >
+                  download
+                </a>
+
+                <pre
+                  style={{
+                    color: "#d1d5db",
+                    fontFamily: "'Courier New', monospace",
+                    fontSize: "0.85rem",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
+                    margin: 0,
+                  }}
+                >
+                  {filePreviewText || "Loading CSV preview..."}
+                </pre>
+
+                <p style={{ color: "#9ca3af", marginTop: 10, fontSize: 13 }}>
+                  Tip: rotate the numeric grid (90° increments) and convert ASCII codes to text to reveal the hidden
+                  message.
+                </p>
+              </>
             ) : (
               <pre
                 style={{
