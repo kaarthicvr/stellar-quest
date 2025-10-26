@@ -7,7 +7,7 @@ export default function Level2AudioPage() {
   const [teamName, setTeamName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [responses, setResponses] = useState(["", "", "", "", ""]);
+  const [responses, setResponses] = useState(Array(29).fill(""));
   const [showComplete, setShowComplete] = useState(false);
   const [showFileContent, setShowFileContent] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +20,7 @@ export default function Level2AudioPage() {
   const navigate = useNavigate();
 
   const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbz2GCyKcc7d6aF2e3uTBdbknAp_4M50fIRY5Y-GdGNE8ZTemx2fJ0w1wkn1QlLJKL-z/exec";
+    "https://script.google.com/macros/s/AKfycbxrVnotEdKDC25DEleFwVJ1NLXkw5f2qec2XqNovlY7-cOjACoXkilce1j99gOo7eAl/exec";
 
   const questions = [
     {
@@ -39,7 +39,6 @@ export default function Level2AudioPage() {
 [INFO] Life support systems nominal
 [ERR] 0x4A7B Navigation core offline - retry in 30 seconds
 
-
 [TIMESTAMP: 3847.251.14:32:31] AUTO-RECOVERY ATTEMPT #1
 [WARN] Power surge detected in fusion reactor chamber 3
 [DEBUG] Attempting to restore backup power...
@@ -50,7 +49,6 @@ export default function Level2AudioPage() {
 [DEBUG] Initiating emergency beacon transmission...
 [ERR] 0x1234 Communication array damaged - signal weak
 [CRITICAL] Life support reserves: 6 hours 23 minutes remaining
-
 
 [TIMESTAMP: 3847.251.14:33:45] DIAGNOSTIC SCAN RESULTS
 [INFO] Scanning all ship systems...
@@ -64,7 +62,6 @@ export default function Level2AudioPage() {
 [ERR] 0xBEEF Sensor array malfunction - external visibility compromised
 [CRITICAL] Multiple system failures cascading
 
-
 [TIMESTAMP: 3847.251.14:35:12] EMERGENCY PROTOCOLS ACTIVE
 [WARN] Entering lockdown mode for crew safety
 [DEBUG] Isolating damaged sections...
@@ -77,7 +74,6 @@ export default function Level2AudioPage() {
 [INFO] Auto-pilot engaged for controlled descent
 [ERR] 0x5678 Landing gear deployment mechanism jammed
 
-
 [TIMESTAMP: 3847.251.14:37:08] LANDING SEQUENCE INITIATED
 [CRITICAL] BRACE FOR IMPACT - All crew to emergency stations
 [WARN] Heat shield integrity at 72% - within acceptable parameters
@@ -89,7 +85,6 @@ export default function Level2AudioPage() {
 [WARN] Surface impact in T-minus 8 minutes
 [DEBUG] Emergency landing protocol Zeta-7 activated
 [INFO] All crew members report ready status
-
 
 [TIMESTAMP: 3847.251.14:44:31] SURFACE IMPACT DETECTED
 [CRITICAL] IMPACT! All systems experiencing severe shock damage
@@ -104,7 +99,6 @@ export default function Level2AudioPage() {
 [DEBUG] Beginning emergency repair procedures...
 [INFO] Distress beacon active on emergency frequency
 
-
 [TIMESTAMP: 3847.251.14:46:15] POST-CRASH ASSESSMENT
 [CRITICAL] Ship systems operating at 23% capacity
 [ERR] 0xABCD Hyperdrive core completely offline - repair required
@@ -118,7 +112,6 @@ export default function Level2AudioPage() {
 [DEBUG] Beginning systematic repair of critical systems...
 [INFO] Prioritizing life support and communication systems
 
-
 [TIMESTAMP: 3847.251.14:48:03] REPAIR STATUS UPDATE
 [WARN] Fusion reactor operating at minimum safe levels
 [DEBUG] Attempting to restore primary computer core...
@@ -128,7 +121,6 @@ export default function Level2AudioPage() {
 [WARN] Defensive systems offline - crew vulnerability high
 [DEBUG] Initiating stealth mode to avoid detection...
 [INFO] All repair teams report steady progress on critical systems
-
 
 === END OF ACCESSIBLE LOG DATA ===
 [CORRUPTED] [CORRUPTED] [CORRUPTED] [CORRUPTED]
@@ -211,15 +203,15 @@ if __name__ == "__main__":
     else:
         print("✗ Stabilizer malfunction detected!")
         print("✗ Manual intervention required!")
-        print(f"✗ Expected: {expected_checksum}, Got: {checksum}")`,
+        print(f"✗ Expected: {expected_checksum}, Got: {checksum}")
+`,
     },
     {
       id: 3,
       title: "Question 3: Signal in the Static",
       description: "Task: Rotate the numeric grid to the proper orientation and convert ASCII codes to text.",
       fileType: "csv",
-      // this used to be a plain filename only; keep it as a path but we fetch it and provide a proper download
-      fileContent: "/public/holo-matrix.csv"
+      fileContent: "/public/holo-matrix.csv",
     },
     {
       id: 4,
@@ -262,7 +254,8 @@ if __name__ == "__main__":
       }
     ]
   }
-}`
+}
+`,
     },
     {
       id: 5,
@@ -313,10 +306,208 @@ if __name__ == "__main__":
     power = start_engine(engine_password)
     thrust = calculate_thrust(power)
     
-    print(f"\\n📊 Final Status: {result}")
+    print(f"\n📊 Final Status: {result}")
     print(f"Core Power: {power}")
-    print(f"Thrust Power: {thrust}")`
-    }
+    print(f"Thrust Power: {thrust}")`,
+    },
+
+    // --- Inserted 24 new challenges (id: 6 .. 29) ---
+    {
+      id: 6,
+      title: "Question 6: Rotated Little-Endian Hex",
+      description:`Statement:
+You find this string in a forum post:
+\`7b4f2a1c9e8b6d5c3f2a\`
+Interpret the string as hex bytes, treat the byte array as little-endian and rotate the whole array left by 3 bytes, then reinterpret resulting bytes as ASCII and apply ROT13 to alphabetic characters to reveal the flag.`
+,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 7,
+      title: "Question 7: Small RSA, No Padding",
+      description: `Statement:\nYou observe a short RSA ciphertext C, public exponent e=3, and modulus N. The author wrote “no padding; message is tiny.” Check whether m^3 < N and recover m by integer cube root of C, then convert to ASCII to read the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 8,
+      title: "Question 8: LCG Stream Cipher Recovery",
+      description: `Statement:\nA simple stream cipher was used: ciphertext = plaintext XOR PRNG; PRNG is LCG x_{n+1} = (a x_n + b) mod 2^32. You observed three consecutive outputs and their XOR with known plaintext prefix FLAG{. Recover a and b and decrypt the rest to get the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 9,
+      title: "Question 9: Hastad Broadcast (e=3)",
+      description: `Statement:\nYou intercept three RSA ciphertexts for the same plaintext encrypted with exponent e=3 and three different moduli N1,N2,N3. Use CRT and integer cube root to recover the message and flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 10,
+      title: "Question 10: SHA1 Length-Extension HMAC",
+      description: `Statement:\nA web API returns OK if HMAC (mistakenly computed as SHA1(secret || message)) matches. You know one message and its HMAC. Use length-extension to forge an appended message that the server accepts and reveal the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 11,
+      title: "Question 11: Fibonacci Base-256 Decoder",
+      description: `Statement:\nA short challenge prints a number X which equals sum_{i=0..k} F_i * 256^i where F_i are Fibonacci numbers modulo 256. Decode X into big-endian bytes to obtain the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 12,
+      title: "Question 12: Layered Transforms",
+      description: `Statement:\nYou see this short cipher: YjF5MTI1 labeled “layered”. Repeat three transforms: Base64-decode once, apply Caesar shift -5, reverse the string — do this three times to get the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 13,
+      title: "Question 13: RSA Padding Oracle",
+      description: `Statement:\nA service responds whether supplied RSA-decrypted message has correct PKCS#1-v1.5 padding. Use a padding-oracle attack (Bleichenbacher-style) to recover the plaintext and flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 14,
+      title: "Question 14: Polynomial Recovery",
+      description: `Statement:\nA message is encoded as y_i = P(i) mod M for consecutive small integers. Given y_1..y_k with k > degree and prime M, recover P by interpolation and evaluate P(0) to get flag integer, then ASCII.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 15,
+      title: "Question 15: ECDSA Nonce Reuse",
+      description: `Statement:\nYou are given ECDSA signatures where two signatures reused the same nonce k (same r) signing different messages. Use the equations to recover k and then the private key to reveal the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 16,
+      title: "Question 16: Invertible Exponent Function",
+      description: `Statement:\nA small service gives f(x) = (x^e + c) mod p and you can query f. For a known y, invert f by computing d = e^{-1} mod (p-1) when gcd(e,p-1)=1 and find x = (y-c)^d mod p to get flag integer.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 17,
+      title: "Question 17: XOR Recurrence Sequence",
+      description: `Statement:\nA stream of hex numbers where every third number equals XOR of the two previous numbers and a secret byte: a_n = a_{n-1} XOR a_{n-2} XOR s. Recover s from samples and reconstruct stream to get the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 18,
+      title: "Question 18: AES-CTR with SHA1-derived Nonce",
+      description: `Statement:\nA message encrypted by AES-CTR where nonce = first 16 bytes of SHA1(prefix). Guess likely prefixes, compute nonce and decrypt to find the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 19,
+      title: "Question 19: GCD Factoring",
+      description: `Statement:\nTwo RSA moduli N1 and N2 share a prime factor p. Compute g = gcd(N1,N2), factor both moduli, derive private keys and decrypt ciphertexts to reveal flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 20,
+      title: "Question 20: Hash-Chain Seed Recovery",
+      description: `Statement:\nGiven H100 = iterative SHA256 chain Hi = SHA256(Hi-1 || i) where H0 is a 6-letter ASCII seed (the flag), brute-force candidate seeds and iterate 100 times to find the matching H100 and recover the seed/flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 21,
+      title: "Question 21: Small-Prime RSA",
+      description: `Statement:\nRSA ciphertext with e=65537 has N where p is a 20-bit prime. Factor N by trial division up to 2^20, compute d and decrypt to get the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 22,
+      title: "Question 22: Signature XOR Recovery",
+      description: `Statement:\nA service signs messages with sig = SHA1(secret) XOR SHA1(message). Request signatures for two messages, derive SHA1(secret), XOR to obtain AES key and decrypt the flag blob.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 23,
+      title: "Question 23: Prime Oracle Guided Search",
+      description: `Statement:\nA prime-checking oracle returns True/False. The accepted large integer encodes the flag as bytes. Use the oracle to validate candidate integers built from ASCII patterns to discover the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 24,
+      title: "Question 24: XOR Chained IV",
+      description: `Statement:\nA protocol uses IV_i = CT_{i-1} XOR PT_i for a stream cipher. Using known key and ciphertexts, derive PT_i for the block containing FLAG{...}.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 25,
+      title: "Question 25: One-Time Signature Reuse",
+      description: `Statement:\nAn OT signature scheme uses s = k + H(msg)*x mod q but reused k across two messages. From two signatures with same k, compute private key x and recover encrypted flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 26,
+      title: "Question 26: Linear Byte Transform Inversion",
+      description: `Statement:\nEvery plaintext byte b transformed as b' = (b * 37 + 13) mod 256. Compute modular inverse of 37 modulo 256 and invert the transform on observed bytes to recover FLAG{...}.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 27,
+      title: "Question 27: 48-bit Discrete Log",
+      description: `Statement:\nGiven y = g^x mod p where p is 48 bits and g known, compute discrete log x using BSGS or Pollard Rho and convert x to ASCII to read the flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 28,
+      title: "Question 28: Chosen-Message SHA256 Key Recovery",
+      description: `Statement:\nA service returns SHA256(msg || key) for chosen msg with constant key. Use chosen-message queries and a small keyspace precomputation to find key = flag.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
+    {
+      id: 29,
+      title: "Question 29: Rotate-XOR Encoded Integer",
+      description: `Statement:\nenc(m) = ROTL64(m, r) XOR k is given for flag_int. With r known and k small, brute-force k, reverse rotation and convert integer to ASCII to find FLAG{...}.`,
+      fileType: "txt",
+      fileContent: "",
+      displayFile: false,
+    },
   ];
 
   // 🌟 Generate stars + retrieve team name from localStorage
@@ -362,6 +553,16 @@ if __name__ == "__main__":
       const q = questions[currentIndex];
       if (!showFileContent || !q) return;
 
+      // If the question explicitly hides files, don't attempt to fetch or prepare them
+      if (q.displayFile === false) {
+        setFilePreviewText(null);
+        if (fileDownloadUrl) {
+          URL.revokeObjectURL(fileDownloadUrl);
+          setFileDownloadUrl(null);
+        }
+        return;
+      }
+
       if (q.fileType === "csv") {
         const path = q.fileContent; // expecting a relative path like /files/holo-matrix.csv
         try {
@@ -375,8 +576,7 @@ if __name__ == "__main__":
         } catch (err) {
           // If fetching fails (CORS, not present on server, etc.) — create a fallback CSV blob client-side
           console.warn("Could not fetch CSV from", q.fileContent, "— using fallback CSV. Error:", err);
-          // A minimal fallback holo-matrix sample — replace with your real CSV if you have it
-          const fallbackCsv = `34,65,80,82\n85,79,87,88\n90,65,66,67\n68,69,70,71\n`; // sample numeric grid
+          const fallbackCsv = `34,65,80,82\n85,79,87,88\n90,65,66,67\n68,69,70,71\n`;
           const blob = new Blob([fallbackCsv], { type: "text/csv" });
           const url = URL.createObjectURL(blob);
           setFilePreviewText(fallbackCsv);
@@ -413,7 +613,7 @@ if __name__ == "__main__":
     setResponses(newResponses);
   };
 
-  // Submit all 5 responses together to Google Sheet
+  // Submit all responses together to Google Sheet
   const handleSubmitAll = async () => {
     if (!teamName.trim()) {
       alert("Team name not found. Please go back to Level 1.");
@@ -446,18 +646,15 @@ if __name__ == "__main__":
 
   // NEW: Skip handler
   const handleSkip = async () => {
-    // Ensure team name exists
     if (!teamName.trim()) {
       alert("Team name not found. Please go back to Level 1.");
       return;
     }
 
-    // Mark locally as skipped
     const newResponses = [...responses];
     newResponses[currentIndex] = "SKIPPED";
     setResponses(newResponses);
 
-    // Prepare single-question payload so the skipped response is recorded immediately
     const payload = {
       teamName,
       questionId: questions[currentIndex].id,
@@ -472,14 +669,10 @@ if __name__ == "__main__":
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      // advance to next or finish
       setShowFileContent(false);
       if (currentIndex < questions.length - 1) {
         setCurrentIndex(currentIndex + 1);
       } else {
-        // last question skipped => proceed to final completion flow
-        // still run full submit to ensure server receives full responses if needed
-        // (this will also include the SKIPPED marker we just set locally)
         await handleSubmitAll();
       }
     } catch (err) {
@@ -524,357 +717,83 @@ if __name__ == "__main__":
           color: "white",
         }}
       >
-        {/* Render subtle star background behind the completion card */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            overflow: "hidden",
-            pointerEvents: "none",
-          }}
-        >
+        <div aria-hidden style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
           {stars.map((s, i) => (
-            <span
-              key={`star-${i}`}
-              style={{
-                position: "absolute",
-                top: s.top,
-                left: s.left,
-                width: s.size,
-                height: s.size,
-                borderRadius: "50%",
-                background: "rgba(255, 215, 0, 0.9)",
-                opacity: s.opacity * 0.9,
-                transform: "translate(-50%, -50%)",
-                filter: "blur(0.6px)",
-              }}
-            />
+            <span key={`star-${i}`} style={{ position: "absolute", top: s.top, left: s.left, width: s.size, height: s.size, borderRadius: "50%", background: "rgba(255, 215, 0, 0.9)", opacity: s.opacity * 0.9, transform: "translate(-50%, -50%)", filter: "blur(0.6px)" }} />
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          style={{
-            backgroundColor: "rgba(17, 24, 39, 0.9)",
-            padding: "40px 60px",
-            borderRadius: "16px",
-            boxShadow: "0 0 40px rgba(255, 215, 0, 0.6)",
-            textAlign: "center",
-            width: "90%",
-            maxWidth: "600px",
-            position: "relative",
-            zIndex: 2,
-          }}
-        >
-          <h1 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700" }}>
-            ✅ RESPONSES SUBMITTED!
-          </h1>
+        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }} style={{ backgroundColor: "rgba(17, 24, 39, 0.9)", padding: "40px 60px", borderRadius: "16px", boxShadow: "0 0 40px rgba(255, 215, 0, 0.6)", textAlign: "center", width: "90%", maxWidth: "600px", position: "relative", zIndex: 2 }}>
+          <h1 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700" }}>✅ RESPONSES SUBMITTED!</h1>
           <p style={{ color: "#a3a3a3" }}>Team: {teamName}</p>
-          <p style={{ color: "#9ca3af", marginTop: "15px" }}>
-            All {questions.length} questions have been answered and submitted successfully!
-          </p>
+          <p style={{ color: "#9ca3af", marginTop: "15px" }}>All {questions.length} questions have been answered and submitted successfully!</p>
 
-          {/* NEW: Go To Next Level button */}
           <div style={{ marginTop: 24 }}>
-            <button
-              onClick={() => navigate("/level-3")}
-              style={{
-                padding: "12px 28px",
-                fontSize: "16px",
-                fontWeight: "700",
-                color: "#0f172a",
-                background: "#fbbf24",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
-              }}
-            >
-              Go To Next Level
-            </button>
+            <button onClick={() => navigate("/level-3")} style={{ padding: "12px 28px", fontSize: "16px", fontWeight: "700", color: "#0f172a", background: "#fbbf24", border: "none", borderRadius: "8px", cursor: "pointer", boxShadow: "0 6px 18px rgba(0,0,0,0.25)" }}>Go To Next Level</button>
           </div>
         </motion.div>
       </div>
     );
   }
 
-  // Current question
   const currentQuestion = questions[currentIndex];
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        background: "radial-gradient(circle at top, #0f172a, #000)",
-        color: "white",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
-      {/* Starfield background (uses `stars` so ESLint won't complain) */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          overflow: "hidden",
-          pointerEvents: "none",
-        }}
-      >
+    <div style={{ width: "100vw", height: "100vh", background: "radial-gradient(circle at top, #0f172a, #000)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", position: "relative" }}>
+      <div aria-hidden style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
         {stars.map((s, i) => (
-          <span
-            key={`star-${i}`}
-            style={{
-              position: "absolute",
-              top: s.top,
-              left: s.left,
-              width: s.size,
-              height: s.size,
-              borderRadius: "50%",
-              background: "rgba(255, 255, 255, 0.9)",
-              opacity: s.opacity * 0.8,
-              transform: "translate(-50%, -50%)",
-              filter: "blur(0.5px)",
-            }}
-          />
+          <span key={`star-${i}`} style={{ position: "absolute", top: s.top, left: s.left, width: s.size, height: s.size, borderRadius: "50%", background: "rgba(255, 255, 255, 0.9)", opacity: s.opacity * 0.8, transform: "translate(-50%, -50%)", filter: "blur(0.5px)" }} />
         ))}
       </div>
 
-      <motion.div
-        key={currentIndex}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        style={{
-          backgroundColor: "rgba(17, 24, 39, 0.9)",
-          padding: "40px 60px",
-          borderRadius: "16px",
-          boxShadow: "0 0 40px rgba(255,215,0,0.5)",
-          textAlign: "center",
-          width: "90%",
-          maxWidth: "800px",
-          maxHeight: "90vh",
-          overflowY: "auto",
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-        <h2 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700", marginBottom: "10px" }}>
-          🔐 {currentQuestion.title}
-        </h2>
+      <motion.div key={currentIndex} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} style={{ backgroundColor: "rgba(17, 24, 39, 0.9)", padding: "40px 60px", borderRadius: "16px", boxShadow: "0 0 40px rgba(255,215,0,0.5)", textAlign: "center", width: "90%", maxWidth: "800px", maxHeight: "90vh", overflowY: "auto", position: "relative", zIndex: 2 }}>
+        <h2 style={{ fontFamily: "'Cinzel', serif", color: "#FFD700", marginBottom: "10px" }}>🔐 {currentQuestion.title}</h2>
 
-        <p style={{ color: "#a3a3a3", fontSize: "0.9rem", marginBottom: "10px" }}>
-          Question {currentIndex + 1} of {questions.length}
-        </p>
+        <p style={{ color: "#a3a3a3", fontSize: "0.9rem", marginBottom: "10px" }}>Question {currentIndex + 1} of {questions.length}</p>
 
         <p style={{ color: "#fbbf24", fontSize: "0.85rem", marginBottom: "20px" }}>Team: {teamName}</p>
 
-        <p style={{ color: "#d1d5db", fontSize: "0.95rem", marginBottom: "20px" }}>
-          {currentQuestion.description}
-        </p>
+        <p style={{ color: "#d1d5db", fontSize: "0.95rem", marginBottom: "20px" }}>{currentQuestion.description}</p>
 
-        {/* File/Audio Button */}
-        <button
-          onClick={() => setShowFileContent((s) => !s)}
-          style={{
-            padding: "10px 24px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            color: "#FFD700",
-            background: "#374151",
-            border: "2px solid #fbbf24",
-            borderRadius: "8px",
-            cursor: "pointer",
-            marginBottom: "20px",
-          }}
-        >
-          {currentQuestion.fileType === "audio"
-            ? showFileContent
-              ? "Hide Audio"
-              : "🎧 Play Audio"
-            : showFileContent
-            ? "Hide File"
-            : `📄 View ${currentQuestion.fileType.toUpperCase()} File`}
-        </button>
+        {/* Only render file button when displayFile is not explicitly false */}
+        {currentQuestion.displayFile !== false && (
+          <button onClick={() => setShowFileContent((s) => !s)} style={{ padding: "10px 24px", fontSize: "16px", fontWeight: "bold", color: "#FFD700", background: "#374151", border: "2px solid #fbbf24", borderRadius: "8px", cursor: "pointer", marginBottom: "20px" }}>
+            {currentQuestion.fileType === "audio" ? showFileContent ? "Hide Audio" : "🎧 Play Audio" : showFileContent ? "Hide File" : `📄 View ${currentQuestion.fileType?.toUpperCase() || "FILE"}`}          
+          </button>
+        )}
 
-        {/* File Content Display */}
         {showFileContent && (
-          <div
-            style={{
-              marginTop: "15px",
-              marginBottom: "20px",
-              padding: "15px",
-              backgroundColor: "rgba(31, 41, 55, 0.8)",
-              borderRadius: "8px",
-              border: "1px solid #fbbf24",
-              maxHeight: "340px",
-              overflowY: "auto",
-              textAlign: "left",
-            }}
-          >
+          <div style={{ marginTop: "15px", marginBottom: "20px", padding: "15px", backgroundColor: "rgba(31, 41, 55, 0.8)", borderRadius: "8px", border: "1px solid #fbbf24", maxHeight: "340px", overflowY: "auto", textAlign: "left" }}>
             {currentQuestion.fileType === "audio" ? (
               <audio controls src={currentQuestion.fileContent} style={{ width: "100%" }} />
             ) : currentQuestion.fileType === "csv" ? (
               <>
                 <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>
-                  <button
-                    onClick={() => {
-                      // If we have a prepared download URL, trigger a click on an invisible anchor to download
-                      if (fileDownloadUrl && downloadAnchorRef.current) {
-                        downloadAnchorRef.current.click();
-                      } else {
-                        alert("Download not ready yet — try toggling the file preview or check console for errors.");
-                      }
-                    }}
-                    style={{
-                      padding: "8px 14px",
-                      fontSize: "14px",
-                      fontWeight: 700,
-                      color: "#0f172a",
-                      background: "#fbbf24",
-                      border: "none",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    ⤓ Download CSV
-                  </button>
+                  <button onClick={() => { if (fileDownloadUrl && downloadAnchorRef.current) { downloadAnchorRef.current.click(); } else { alert("Download not ready yet — try toggling the file preview or check console for errors."); } }} style={{ padding: "8px 14px", fontSize: "14px", fontWeight: 700, color: "#0f172a", background: "#fbbf24", border: "none", borderRadius: "8px", cursor: "pointer" }}>⤓ Download CSV</button>
 
-                  <button
-                    onClick={() => {
-                      // Try to open download in new tab (useful if browser blocks automatic anchor click)
-                      if (fileDownloadUrl) {
-                        window.open(fileDownloadUrl, "_blank");
-                      } else {
-                        alert("Download not ready yet.");
-                      }
-                    }}
-                    style={{
-                      padding: "8px 14px",
-                      fontSize: "14px",
-                      fontWeight: 700,
-                      color: "#FFD700",
-                      background: "#374151",
-                      border: "2px solid #fbbf24",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    ⤓ Open CSV
-                  </button>
+                  <button onClick={() => { if (fileDownloadUrl) { window.open(fileDownloadUrl, "_blank"); } else { alert("Download not ready yet."); } }} style={{ padding: "8px 14px", fontSize: "14px", fontWeight: 700, color: "#FFD700", background: "#374151", border: "2px solid #fbbf24", borderRadius: "8px", cursor: "pointer" }}>⤓ Open CSV</button>
 
-                  <span style={{ color: "#9ca3af", fontSize: 13 }}>
-                    {fileDownloadUrl ? "Ready to download." : "Preparing download..."}
-                  </span>
+                  <span style={{ color: "#9ca3af", fontSize: 13 }}>{fileDownloadUrl ? "Ready to download." : "Preparing download..."}</span>
                 </div>
 
-                {/* Hidden anchor used to trigger download with suggested filename */}
-                <a
-                  ref={downloadAnchorRef}
-                  href={fileDownloadUrl || "#"}
-                  download={`holo-matrix-${currentQuestion.id}.csv`}
-                  style={{ display: "none" }}
-                >
-                  download
-                </a>
+                <a ref={downloadAnchorRef} href={fileDownloadUrl || "#"} download={`holo-matrix-${currentQuestion.id}.csv`} style={{ display: "none" }}>download</a>
 
-                <pre
-                  style={{
-                    color: "#d1d5db",
-                    fontFamily: "'Courier New', monospace",
-                    fontSize: "0.85rem",
-                    whiteSpace: "pre-wrap",
-                    wordBreak: "break-word",
-                    margin: 0,
-                  }}
-                >
-                  {filePreviewText || "Loading CSV preview..."}
-                </pre>
+                <pre style={{ color: "#d1d5db", fontFamily: "'Courier New', monospace", fontSize: "0.85rem", whiteSpace: "pre-wrap", wordBreak: "break-word", margin: 0 }}>{filePreviewText || "Loading CSV preview..."}</pre>
 
-                <p style={{ color: "#9ca3af", marginTop: 10, fontSize: 13 }}>
-                  Tip: rotate the numeric grid (90° increments) and convert ASCII codes to text to reveal the hidden
-                  message.
-                </p>
+                <p style={{ color: "#9ca3af", marginTop: 10, fontSize: 13 }}>Tip: rotate the numeric grid (90° increments) and convert ASCII codes to text to reveal the hidden message.</p>
               </>
             ) : (
-              <pre
-                style={{
-                  color: "#d1d5db",
-                  fontFamily: "'Courier New', monospace",
-                  fontSize: "0.85rem",
-                  whiteSpace: "pre-wrap",
-                  wordBreak: "break-word",
-                  margin: 0,
-                }}
-              >
-                {currentQuestion.fileContent}
-              </pre>
+              <pre style={{ color: "#d1d5db", fontFamily: "'Courier New', monospace", fontSize: "0.85rem", whiteSpace: "pre-wrap", wordBreak: "break-word", margin: 0 }}>{currentQuestion.fileContent}</pre>
             )}
           </div>
         )}
 
-        <textarea
-          placeholder="Enter your response..."
-          value={responses[currentIndex]}
-          onChange={(e) => handleChangeResponse(e.target.value)}
-          style={{
-            marginTop: "10px",
-            width: "95%",
-            height: "100px",
-            padding: "12px",
-            borderRadius: "8px",
-            backgroundColor: "rgba(31, 41, 55, 0.8)",
-            color: "white",
-            border: "1px solid #fbbf24",
-            resize: "vertical",
-            fontFamily: "'Space Mono', monospace",
-            fontSize: "14px",
-          }}
-        />
+        <textarea placeholder="Enter your response..." value={responses[currentIndex]} onChange={(e) => handleChangeResponse(e.target.value)} style={{ marginTop: "10px", width: "95%", height: "100px", padding: "12px", borderRadius: "8px", backgroundColor: "rgba(31, 41, 55, 0.8)", color: "white", border: "1px solid #fbbf24", resize: "vertical", fontFamily: "'Space Mono', monospace", fontSize: "14px" }} />
 
         <div style={{ marginTop: "25px", display: "flex", gap: 12, justifyContent: "center", alignItems: "center" }}>
-          <button
-            onClick={handleSkip}
-            disabled={isSubmitting}
-            style={{
-              padding: "12px 20px",
-              fontSize: "16px",
-              fontWeight: "700",
-              color: "#0f172a",
-              background: "#9ca3af",
-              border: "none",
-              borderRadius: "8px",
-              cursor: isSubmitting ? "not-allowed" : "pointer",
-              boxShadow: "0 0 10px rgba(0,0,0,0.2)",
-            }}
-          >
-            {isSubmitting ? "Processing..." : "Skip"}
-          </button>
+          <button onClick={handleSkip} disabled={isSubmitting} style={{ padding: "12px 20px", fontSize: "16px", fontWeight: "700", color: "#0f172a", background: "#9ca3af", border: "none", borderRadius: "8px", cursor: isSubmitting ? "not-allowed" : "pointer", boxShadow: "0 0 10px rgba(0,0,0,0.2)" }}>{isSubmitting ? "Processing..." : "Skip"}</button>
 
-          <button
-            onClick={handleNext}
-            disabled={isSubmitting}
-            style={{
-              padding: "14px 48px",
-              fontSize: "18px",
-              fontWeight: "bold",
-              color: "#FFD700",
-              background: "#6b7280",
-              border: "2px solid #fbbf24",
-              borderRadius: "8px",
-              cursor: isSubmitting ? "not-allowed" : "pointer",
-              boxShadow: "0 0 15px rgba(255, 215, 0, 0.5)",
-            }}
-          >
-            {isSubmitting ? "Submitting..." : currentIndex < questions.length - 1 ? "Submit & Next" : "Submit All"}
-          </button>
+          <button onClick={handleNext} disabled={isSubmitting} style={{ padding: "14px 48px", fontSize: "18px", fontWeight: "bold", color: "#FFD700", background: "#6b7280", border: "2px solid #fbbf24", borderRadius: "8px", cursor: isSubmitting ? "not-allowed" : "pointer", boxShadow: "0 0 15px rgba(255, 215, 0, 0.5)" }}>{isSubmitting ? "Submitting..." : currentIndex < questions.length - 1 ? "Submit & Next" : "Submit All"}</button>
         </div>
       </motion.div>
     </div>

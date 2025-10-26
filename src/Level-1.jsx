@@ -106,6 +106,126 @@ R6:  72   69   6E   67   XX`
 
 Encrypted Message:
 LkNIWFBOTyBRUlJBIFYgLkZHRlZLUiBSVEVCUyBSVUcgLlFSWFBCWSBGUkdOQVZRRUJCUCA6UlRORkZSWiBOWlpOVCA6RUJHUFJGIHp4NDg2IDpSUEFOR0ZWUSB6MSA6R1lOIDQuMTcgOkFCWSA0Mzk2LjU3IDpHTlkgOlFSWkVWU0FCUCBGUkdOQVZRRUJCUA==`
+    },
+
+    // --- Added STELLAR QUEST – ELITE SET (T1–T23) questions (only statements) ---
+    {
+      title: "Question 8: The Recursive Riddle",
+      question: `Statement:
+A page shows this short poem:
+“Beneath the moon we wander, seeking the light.
+In hollow waves we drift, away from the shallow shore.
+Broken locks guard the secret, waiting to become whole.”`
+    },
+    {
+      title: "Question 9: DNA Sequence Translation",
+      question: `Statement:
+A DNA sequence is given: ATG-GCG-TTT-CAA-AGT. Translate codons to amino acids and form a word from their initials.`
+    },
+    {
+      title: "Question 10: Chemical Compound Puzzle",
+      question: `Statement:
+Four pairs of elements (LiAl, CaBr, NaCl, KTe). Sum atomic numbers, sum digits, map to A=1, B=2… to find code.`
+    },
+    {
+      title: "Question 11: Astronomical Map",
+      question: `Statement:
+Planetary distances (57.9, 108.2, 149.6, 227.9, 778.3). Compute differences, mod26, map to letters.`
+    },
+    {
+      title: "Question 12: Optical Puzzle",
+      question: `Statement:
+Light passes through 5 prisms at angles 15°, 30°, 45°, 60°, 75°. Compute sin(angle)*100 → int → mod26 → letters.`
+    },
+    {
+      title: "Question 13: Cultural Vault",
+      question: `Statement:
+Five coins: Lion, Eagle, Turtle, Snake, Dragon — each with a Roman numeral year. Determine capitals, order reverse chronologically, shift by year digit.`
+    },
+    {
+      title: "Question 14: Elemental Alchemy Symbols",
+      question: `Statement:
+Symbols 🜁🜂🜃🜄 represent elements Fire, Water, Earth, Air. Assign values, sum mod97 in syllable order.`
+    },
+    {
+      title: "Question 15: Smuggler’s Path",
+      question: `Statement:
+Treasure grid 4×4, coins at (1,1),(2,3),(4,2). Code = sum of Manhattan distances between connected coins in shortest path.`
+    },
+    {
+      title: "Question 16: Prime Spiral Lock",
+      question: `Statement:
+A 6×6 spiral (1–36) clockwise. Extract diagonals, replace numbers with nearest primes, convert to letters A=1–Z=26.`
+    },
+    {
+      title: "Question 17: Elliptic Treasure Curve",
+      question: `Statement:
+Find integer (x,y) on y² = x³ − x + 1 for |x|≤6. Count integer points, convert to Roman numerals, Caesar shift +3 for flag.`
+    },
+    {
+      title: "Question 18: Quantum Bitflip Puzzle",
+      question: `Statement:
+Given A⊕B=11010011, B⊕C=01101100, A⊕C=10111111. Find A and decode ASCII.`
+    },
+    {
+      title: "Question 19: Möbius Maze",
+      question: `Statement:
+Robot walks on ring of 31 nodes, moving by successive primes mod31. Find steps to return to 0 first time.`
+    },
+    {
+      title: "Question 20: Four-Color Vault",
+      question: `Statement:
+A path visits four colored regions, starting/ending on blue, no same-colored adjacencies. Count valid paths, convert count to letters.`
+    },
+    {
+      title: "Question 21: Histogram Heist",
+      question: `Statement:
+16×16 grayscale image hides 4 ASCII chars using peak bins (65,80,90,100). Multiply bins by 4, mod256, read ASCII.`
+    },
+    {
+      title: "Question 22: Möbius Strip Cipher",
+      question: `Statement:
+Phrase “STAR FORGE”, remove spaces, write 3×3 grid row-wise, read with Möbius fold, apply ROT13.`
+    },
+    {
+      title: "Question 23: Invisible Ink",
+      question: `Statement:
+Base64 string U1RBUl9QQk9Y XORed by 0x1F. Decode base64 then XOR each byte.`
+    },
+    {
+      title: "Question 24: Graph Cut Treasure",
+      question: `Statement:
+Find min cut separating node1 from node6 in a 6-node weighted graph. Convert weight sum S→binary→reversed→ASCII.`
+    },
+    {
+      title: "Question 25: Lattice Path Cipher",
+      question: `Statement:
+Path on 6×6 grid encoded by binary 1101001100110100. Group bytes→ASCII.`
+    },
+    {
+      title: "Question 26: Spectral Key",
+      question: `Statement:
+Audio tone cluster has frequencies matching DTMF digits 2,4,6,8. Map digits to letters 2→B,4→D,6→F,8→H.`
+    },
+    {
+      title: "Question 27: Modular Treasure Ring",
+      question: `Statement:
+x≡3(mod4), x≡4(mod5), x≡5(mod7), find smallest x<1000, convert to base36.`
+    },
+    {
+      title: "Question 28: Color Channel XOR",
+      question: `Statement:
+Each character = R⊕G⊕B from every 3rd pixel in RGB stream. Extract bytes.`
+    },
+    {
+      title: "Question 29: Fractal Index",
+      question: `Statement:
+Logistic map xₙ₊₁=3.99xₙ(1−xₙ), x₀=0.5. floor(100xₙ) mod26 → letters.`
+    },
+    {
+      title: "Question 30: Möbius Mirror",
+      question: `Statement:
+Write 12-letter string, append reverse but swap vowels (a↔e,i↔o,u↔y). Take letters at prime indices 2,3,5,7,11,13,17,19,23.`
     }
   ];
 
